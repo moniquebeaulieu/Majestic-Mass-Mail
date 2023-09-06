@@ -51,7 +51,7 @@ def send_email(personal_template, email):
 
 
 # company name and emails csv into pandas dataframe
-company_info_path = 'test_email_list.csv'
+company_info_path = 'sponsorship_list.csv'
 company_info_df = pd.read_csv(company_info_path)
 
 # takes email body from a text file and reads
