@@ -28,7 +28,7 @@ def send_email(personal_template, email):
     msg['From'] = sender_email
     msg['To'] = recipient_email
 
-    msg.attach(MIMEText(email_body, 'plain'))
+    msg.attach(MIMEText(email_body, 'html'))
 
     # attaches the pdf package to the email
     with open('CISSA Sponsorship Package 2023-2024.pdf', 'rb') as attachment:
@@ -65,8 +65,15 @@ for index, row in company_info_df.iterrows():
     email = row['email']
     # replaces [Company name] with personalized name
     personal_template = email_template.replace('[Company Name]', company)
+    body_html = f"""
+    <html>
+        <body>
+            {personal_template}
+        </body>
+    </html>
+    """
     print(email) # to know which emails sent
     # print(personal_template)
-    send_email(personal_template, email) # ONLY WHEN READY
+    send_email(personal_template, email) # ONLY WHEN READY (keep our emails to know if it sent at beginning and end)
 
 
